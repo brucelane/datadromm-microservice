@@ -1,8 +1,8 @@
 {
   "name": "datadromm-microservice",
   "version": "0.0.1",
-  "description": "REST api for videodromm projects",
-  "main": "server.js",
+  "description": "Shaders management microservice",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,13 +12,27 @@
   },
   "author": "Bruce Lane - Josep Arpi",
   "license": "AGPL-3.0",
+  "keywords": [
+    "shaders",
+    "microservice",
+    "nodejs"
+  ],
   "bugs": {
     "url": "https://github.com/videodromm/datadromm-microservice/issues"
   },
   "homepage": "https://github.com/videodromm/datadromm-microservice#readme",
   "dependencies": {
-    "express": "^4.14.1",
     "mocha": "^3.2.0",
-    "nodemon": "^1.11.0"
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.2"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
+    "gulp-nodemon": "^2.2.1",
+    "istanbul": "^0.4.5"
   }
 }
