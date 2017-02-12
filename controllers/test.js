@@ -4,9 +4,9 @@ function addShader() {
     return new Promise(function(resolve, reject) {
         // create shader
         var shader = new Shader({
-                name: "flyingSaucers",
-                text: "void main(void) {gl_FragColor = vec4(1.0,1.0,0.0,1.0);}",
-                url: "https://www.shadertoy.com/view/Md23DV",
+                name: 'flyingSaucers',
+                text: 'void main(void) {gl_FragColor = vec4(1.0,1.0,0.0,1.0);}',
+                url: 'https://www.shadertoy.com/view/Md23DV',
                 created: new Date(),
                 isValid : false 
         }); 
@@ -40,7 +40,7 @@ function removeShader(shaderId) {
                 return reject(err);
             }
             shaderToDelete.remove();
-            console.log(shaderId + " deleted");
+            console.log(shaderId + ' deleted');
             return resolve(shaderToDelete);        
         });
     });

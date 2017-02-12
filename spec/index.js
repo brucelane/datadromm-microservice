@@ -9,6 +9,7 @@ var should = require('should');
 var sinon = require('sinon');
 var shaderModel = require('../models/test.js');
 var shaderController =  require('../controllers/test.js');
+var mongoose = require('mongoose');
 
 describe('Controllers', function() {
 
@@ -18,8 +19,8 @@ describe('Controllers', function() {
         var deleteStub;
         before(function(done){
             saveStub = sinon.stub(shaderModel.prototype, 'save');
-            listStub = sinon.stub(shaderModel.prototype, 'find');
-            deleteStub = sinon.stub(shaderModel.prototype, 'findOneAndRemove');
+            listStub = sinon.stub(mongoose.Model, 'find');
+            deleteStub = sinon.stub(mongoose.Model, 'findOneAndRemove');
             done();
         });
 
