@@ -12,14 +12,14 @@ gulp.task('debug', function () {
 });
 
 gulp.task('coverage', function() {
-    return gulp.src(['lib/*.js'])
+    return gulp.src(['controllers/*.js'])
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
 });
 
 
 gulp.task('test', ['coverage'], function() {
-    return gulp.src(['spec/*.js'])
+    return gulp.src(['spec/**/*.js'])
     .pipe(mocha())
     .pipe(istanbul.writeReports())
     .pipe(istanbul.enforceThresholds({ thresholds: { global: 90  }  }));
