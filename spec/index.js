@@ -1,22 +1,26 @@
+"use strict";
+/* jshint node: true */
+/* global require, Promise, console, process */
+
 var chai = require('chai');
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 var should = require('should');
 var sinon = require('sinon');
 var shaderModel = require('../models/test.js');
-var shaderController =  require('../controllers/index.js');
+var shaderController =  require('../controllers/test.js');
 
 describe('Controllers', function() {
 
     describe('Shaders', function(){
         var saveStub;
         before(function(done){
-            stub = sinon.stub(shaderModel.prototype, 'save');
+            saveStub = sinon.stub(shaderModel.prototype, 'save');
             done();
         });
 
         it('Add a shader successfully', function(done) {
-            stub
+            saveStub
             .yields(null, {});
             shaderController.createShader()
                 .then(function(value){
@@ -25,7 +29,7 @@ describe('Controllers', function() {
         });
 
         it('Add a shader fails', function(done) {
-            stub
+            saveStub
             .yields(new Error('Unexpected error'), null);
             shaderController.createShader()
                 .then(function(value){

@@ -30,4 +30,4 @@ function defaultRoute(app) {
 }
 module.exports = function(app) {
     defaultRoute(app);
-}
+};
