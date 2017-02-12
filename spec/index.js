@@ -39,5 +39,18 @@ describe('Controllers', function() {
                     done();
                 });
         });
+
+        it('Delete a shader fails', function(done) {
+            saveStub
+            .yields(new Error('Unexpected error'), null);
+            shaderController.deleteShader(1)
+                .then(function(value){
+                done('Should not be resolved');
+                })
+                .catch(function(err){
+                    done();
+                });
+
+        });
     });
 });
