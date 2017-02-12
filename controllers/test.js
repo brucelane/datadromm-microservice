@@ -4,9 +4,9 @@ function addShader() {
     return new Promise(function(resolve, reject) {
         // create shader
         var shader = new Shader({
-                name: "flyingSaucers",
-                text: "void main(void) {gl_FragColor = vec4(1.0,1.0,0.0,1.0);}",
-                url: "https://www.shadertoy.com/view/Md23DV",
+                name: 'flyingSaucers',
+                text: 'void main(void) {gl_FragColor = vec4(1.0,1.0,0.0,1.0);}',
+                url: 'https://www.shadertoy.com/view/Md23DV',
                 created: new Date(),
                 isValid : false 
         }); 
@@ -33,17 +33,15 @@ function listShaders() {
 }
 function removeShader(shaderId) {
     return new Promise(function(resolve, reject) {
-       Shader.findOneAndRemove({id: shaderId}).exec( 
+       Shader.findOneAndRemove({_id: shaderId}).exec( 
             function(err, shaderToDelete) {
-            console.log(shaderId);
-            console.log(shaderToDelete);
             if (err) {
                 console.log(err);
                 return reject(err);
             }
-            console.log("ok deleted");
-            return resolve(shaderToDelete);
-        
+            shaderToDelete.remove();
+            console.log(shaderId + ' deleted');
+            return resolve(shaderToDelete);        
         });
     });
 }
