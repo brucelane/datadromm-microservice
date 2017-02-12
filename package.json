@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node lib/index.js",
-    "test": "mocha"
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec spec/"
   },
   "repository": {
     "type": "git",
