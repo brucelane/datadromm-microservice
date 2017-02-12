@@ -40,10 +40,19 @@ describe('Controllers', function() {
                 });
         });
 
+        it('List shaders successfully', function(done) {
+            saveStub
+            .yields(null, {});
+            shaderController.getShaderList()
+                .then(function(value){
+                done();
+            });
+        });
+
         it('Delete a shader fails', function(done) {
             saveStub
             .yields(new Error('Unexpected error'), null);
-            shaderController.deleteShader(1)
+            shaderController.deleteShader('1')
                 .then(function(value){
                 done('Should not be resolved');
                 })
