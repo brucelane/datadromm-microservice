@@ -14,8 +14,12 @@ describe('Controllers', function() {
 
     describe('Shaders', function(){
         var saveStub;
+        var listStub;
+        var deleteStub;
         before(function(done){
             saveStub = sinon.stub(shaderModel.prototype, 'save');
+            listStub = sinon.stub(shaderModel.prototype, 'find');
+            deleteStub = sinon.stub(shaderModel.prototype, 'findOneAndRemove');
             done();
         });
 
@@ -41,7 +45,7 @@ describe('Controllers', function() {
         });
 
         it('List shaders successfully', function(done) {
-            saveStub
+            listStub
             .yields(null, {});
             shaderController.getShaderList()
                 .then(function(value){
@@ -50,7 +54,7 @@ describe('Controllers', function() {
         });
 
         it('Delete a shader fails', function(done) {
-            saveStub
+            deleteStub
             .yields(new Error('Unexpected error'), null);
             shaderController.deleteShader('1')
                 .then(function(value){
@@ -59,7 +63,6 @@ describe('Controllers', function() {
                 .catch(function(err){
                     done();
                 });
-
         });
     });
 });
