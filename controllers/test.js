@@ -1,15 +1,10 @@
 var Shader = require('../models/test.js');
 
-function addShader() {
+// object passed
+function addShader(shaderObject) {
     return new Promise(function(resolve, reject) {
         // create shader
-        var shader = new Shader({
-                name: 'flyingSaucers',
-                text: 'void main(void) {gl_FragColor = vec4(1.0,1.0,0.0,1.0);}',
-                url: 'https://www.shadertoy.com/view/Md23DV',
-                created: new Date(),
-                isValid : false 
-        }); 
+        var shader = new Shader(shaderObject); 
         // save to mongodb
         shader.save(function (err, shaderInserted)
         {

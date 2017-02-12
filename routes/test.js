@@ -9,7 +9,7 @@ function defaultRoute(app) {
         ShaderController.getShaderList()
         .then(function(shaderList) {
             res.status(200).json(shaderList);
-        })
+        });
     });
     app.delete('/shader/:id', function(req, res) {
         ShaderController.deleteShader(req.params.id)
@@ -17,8 +17,15 @@ function defaultRoute(app) {
             res.status(200).json('Deleted');
         });
     });
-    app.post('/shaders', function(req, res) {
-        ShaderController.createShader()
+    app.post('/shader', function(req, res) {
+        var newShader = {
+                name: 'flyingSaucers',
+                text: 'void main(void) {gl_FragColor = vec4(1.0,1.0,0.0,1.0);}',
+                url: 'https://www.shadertoy.com/view/Md23DV',
+                created: new Date(),
+                isValid : false 
+        };
+        ShaderController.createShader(newShader)
         .then(function(shaderInserted) {
             res.status(200).json(shaderInserted);
         })
