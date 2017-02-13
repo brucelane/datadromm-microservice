@@ -1,15 +1,10 @@
 var Shader = require('../models/test.js');
 
-function addShader() {
+// object passed
+function addShader(shaderObject) {
     return new Promise(function(resolve, reject) {
         // create shader
-        var shader = new Shader({
-                name: 'flyingSaucers',
-                text: 'void main(void) {gl_FragColor = vec4(1.0,1.0,0.0,1.0);}',
-                url: 'https://www.shadertoy.com/view/Md23DV',
-                created: new Date(),
-                isValid : false 
-        }); 
+        var shader = new Shader(shaderObject); 
         // save to mongodb
         shader.save(function (err, shaderInserted)
         {
@@ -33,15 +28,11 @@ function listShaders() {
 }
 function removeShader(shaderId) {
     return new Promise(function(resolve, reject) {
-       Shader.findOneAndRemove({_id: shaderId}).exec( 
-            function(err, shaderToDelete) {
+        Shader.findOneAndRemove({_id: shaderId}, null, function(err, deletedDoc){
             if (err) {
-                console.log(err);
-                return reject(err);
+            return reject(err);
             }
-            shaderToDelete.remove();
-            console.log(shaderId + ' deleted');
-            return resolve(shaderToDelete);        
+            return resolve(deletedDoc);     
         });
     });
 }

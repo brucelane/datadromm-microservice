@@ -27,7 +27,14 @@ describe('Controllers', function() {
         it('Add a shader successfully', function(done) {
             saveStub
             .yields(null, {});
-            shaderController.createShader()
+            var newShader = {
+                name: 'flyingSaucers',
+                text: 'void main(void) {gl_FragColor = vec4(1.0,1.0,0.0,1.0);}',
+                url: 'https://www.shadertoy.com/view/Md23DV',
+                created: new Date(),
+                isValid : false 
+            };
+            shaderController.createShader(newShader)
                 .then(function(value){
                 done();
             });
@@ -51,7 +58,28 @@ describe('Controllers', function() {
             shaderController.getShaderList()
                 .then(function(value){
                 done();
-            });
+                });
+        });
+
+        it('List shaders fails', function(done) {
+            listStub
+            .yields(new Error('Unexpected error'), null);
+            shaderController.getShaderList()
+                .then(function(value){
+                done('Should not be resolved');
+                })
+                .catch(function(err){
+                    done();
+                });
+        });
+
+        it('Delete a shader successfully', function(done) {
+            deleteStub
+            .yields(null, {});
+            shaderController.deleteShader()
+                .then(function(value){
+                done();
+                });
         });
 
         it('Delete a shader fails', function(done) {
