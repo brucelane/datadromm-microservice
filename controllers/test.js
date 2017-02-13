@@ -28,15 +28,11 @@ function listShaders() {
 }
 function removeShader(shaderId) {
     return new Promise(function(resolve, reject) {
-       Shader.findOneAndRemove({_id: shaderId}).exec( 
-            function(err, shaderToDelete) {
+        Shader.findOneAndRemove({_id: shaderId}, null, function(err, deletedDoc){
             if (err) {
-                console.log(err);
-                return reject(err);
+            return reject(err);
             }
-            shaderToDelete.remove();
-            console.log(shaderId + ' deleted');
-            return resolve(shaderToDelete);        
+            return resolve(deletedDoc);     
         });
     });
 }
