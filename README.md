@@ -1,5 +1,9 @@
 # Datadromm - Microservice
 
+[![Build Status](https://travis-ci.org/videodromm/datadromm-microservice.svg?branch=master)](https://travis-ci.org/videodromm/datadromm-microservice)
+[![codecov](https://codecov.io/gh/videodromm/datadromm-microservice/branch/master/graph/badge.svg)](https://codecov.io/gh/videodromm/datadromm-microservice)
+
+
 ## Purpose
 
 Within the scope of videodromm we want to achieve a way to easily add, edit and retrieve shader files from anywhere.
