@@ -2,40 +2,18 @@ var Shader = require('../models/test.js');
 
 // object passed
 function addShader(shaderObject) {
-    return new Promise(function(resolve, reject) {
-        // create shader
-        var shader = new Shader(shaderObject); 
-        // save to mongodb
-        shader.save(function (err, shaderInserted)
-        {
-            if (err) {
-                return reject(err);
-            }
-            return resolve(shaderInserted);
-            
-        });
-    });
+    var shader = new Shader(shaderObject);
+    return shader.save();
 }
+
 function listShaders() {
-    return new Promise(function(resolve, reject) {
-        Shader.find(function(err, shaderList) {
-            if (err) {
-                return reject(err);
-            }
-            return resolve(shaderList);
-        });       
-    });
+    return Shader.find();
 }
+
 function removeShader(shaderId) {
-    return new Promise(function(resolve, reject) {
-        Shader.findOneAndRemove({_id: shaderId}, null, function(err, deletedDoc){
-            if (err) {
-            return reject(err);
-            }
-            return resolve(deletedDoc);     
-        });
-    });
+    return Shader.findOneAndRemove({_id: shaderId}, null);
 }
+
 module.exports = {
     createShader: addShader,
     getShaderList: listShaders,
