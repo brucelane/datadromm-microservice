@@ -47,8 +47,8 @@ describe('Controllers', function() {
 
         it('List shaders successfully', function() {
             listStub
-            .returns(Promise.resolve({}));
-            return shaderController.getShaderList()
+            .returns(mockFindOne);
+            return shaderController.getShaderList(1, 10)
             .should.be.fulfilled();
         });
 
