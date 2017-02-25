@@ -1,3 +1,6 @@
+# vd specific
+pwd.json
+
 # Logs
 logs
 *.log

@@ -1,7 +1,28 @@
 var ShaderController = require('../controllers/test.js');
+var jwt = require('jsonwebtoken');
+var pwd = require('../pwd.json') || {passwd:'movealong'};
 
 function defaultRoute(app) {
-
+    app.post('/auth', function(req, res) {
+        var passwd = req.body.passwd;
+        if (!passwd) {
+            return res.sendStatus(401);
+        } 
+        if (passwd !== pwd.passwd) {
+            return res.sendStatus(400);
+        }
+        var token = jwt.sign({},pwd.passwd,{expiresIn:60});
+        res.status(200).send(token);
+    });
+    app.use(function(req, res, next){
+        var auth = req.headers['authorization'];
+        jwt.verify(auth, pwd.passwd, function(err, decodedToken) {
+            if (err) {
+                return res.sendStatus(401);
+            }
+            next();
+        }); 
+    });
     app.get('/', function(req, res) {
         res.status(200).json('OK');
     });
