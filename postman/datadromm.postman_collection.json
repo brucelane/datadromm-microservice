@@ -1,0 +1,64 @@
+{
+	"variables": [],
+	"info": {
+		"name": "datadromm",
+		"_postman_id": "f92ce86d-b008-37b1-5340-dab4e32f5d1d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get shaders",
+			"request": {
+				"url": "http://localhost:8080/shaders/1/1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable(\"now\", new Date());"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/shader",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"rouge\",\n\t\"text\": \"void main(void) {gl_FragColor = vec4(1.0,0.0,0.0,1.0);}\",\n    \"url\": \"https://www.shadertoy.com/view/Md23DV\",\n    \"created\": \"{{now}}\",\n\t\"isValid\": \"false\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"url": "http://localhost:8080/shader/58b19838c9a0981b5c74d300",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
