@@ -46,6 +46,14 @@ describe('Controllers', function() {
         });
 
         it('List shaders successfully', function() {
+            var mockFindOne = {
+                skip: function () {
+                    return mockFindOne;
+                },
+                limit: function () {
+                    return Promise.resolve({});
+                }
+            };
             listStub
             .returns(mockFindOne);
             return shaderController.getShaderList(1, 10)
@@ -53,8 +61,16 @@ describe('Controllers', function() {
         });
 
         it('List shaders fails', function() {
+            var mockFindOne = {
+                skip: function () {
+                    return mockFindOne;
+                },
+                limit: function () {
+                    return Promise.reject('Unexpected error');
+                }
+            };
             listStub
-            .returns(Promise.reject('Unexpected error'));
+            .returns(mockFindOne);
             return shaderController.getShaderList()
             .should.be.rejected();
         });

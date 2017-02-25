@@ -6,8 +6,12 @@ function addShader(shaderObject) {
     return shader.save();
 }
 
-function listShaders() {
-    return Shader.find();
+function listShaders(page, results) {
+    // page 1 don't skip 
+    return Shader
+        .find()
+        .skip((page > 0) ? ((page-1)*results) : 0)
+        .limit(results);
 }
 
 function removeShader(shaderId) {

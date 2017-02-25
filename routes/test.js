@@ -5,8 +5,9 @@ function defaultRoute(app) {
     app.get('/', function(req, res) {
         res.status(200).json('OK');
     });
-    app.get('/shaders', function(req, res) {
-        ShaderController.getShaderList()
+    app.get('/shaders/:page/:results?', function(req, res) {
+        req.params.results = req.params.results || 10;        
+        ShaderController.getShaderList(req.params.page, req.params.results)
         .then(function(shaderList) {
             res.status(200).json(shaderList);
         });
